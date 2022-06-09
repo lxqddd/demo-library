@@ -50,10 +50,19 @@
         [0, 22, 2],
         [0, 23, 5]
       ]
-      option = {
+      const option = {
+        legend: {
+          data: ['时间', '周', '值'],
+          textStyle: { fontSize: 14, color: '#fff' },
+          itemWidth: 25,
+          itemHeight: 15,
+          itemGap: 15,
+          bottom: '0%',
+          selectedMode: false
+        },
         tooltip: {},
         visualMap: {
-          max: 10,
+          max: 20,
           inRange: {
             color: [
               '#313695',
@@ -72,14 +81,22 @@
         },
         xAxis3D: {
           type: 'category',
-          data: hours
+          name: '时间',
+          data: hours,
+          axisPointer: {
+            lineStyle: {
+              color: '#090'
+            }
+          }
         },
         yAxis3D: {
           type: 'category',
-          data: days
+          data: days,
+          name: '周'
         },
         zAxis3D: {
-          type: 'value'
+          type: 'value',
+          name: '值'
         },
         grid3D: {
           boxWidth: 200,
