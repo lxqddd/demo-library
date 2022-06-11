@@ -7,57 +7,60 @@
     <title>Document</title>
   </head>
   <style>
-    .ball1,
-    .ball2 {
+    .square1,
+    .square2 {
       position: absolute;
       width: 100px;
       height: 100px;
-      border-radius: 50%;
-      background: skyblue;
     }
-    .ball1 {
-      top: 30px;
+    .square1 {
+      top: 40px;
+      background: red;
     }
-    .ball2 {
+    .square2 {
       top: 150px;
+      background: blue;
     }
   </style>
   <body>
     <div class="container">
-      <div class="ball1"></div>
-      <div class="ball2"></div>
+      <div class="square1"></div>
+      <div class="square2"></div>
+      <button class="btn">开始！</button>
     </div>
     <script>
-      const ball1El = document.querySelector('.ball1')
-      const ball2El = document.querySelector('.ball2')
+      const square1El = document.querySelector('.square1')
+      const square2El = document.querySelector('.square2')
       // 定时器版
-      function ballMove() {
+      function squareMove() {
         let timer = null
-        ball1El.style.left = '0px'
+        square1El.style.left = '0px'
         timer = setInterval(() => {
-          const ballLeft = parseInt(ball1El.style.left)
-          if (ballLeft >= 500) return clearInterval(timer)
-          ball1El.style.left = ballLeft + 1 + 'px'
-        }, 100 / 6)
+          const squareLeft = parseInt(square1El.style.left)
+          if (squareLeft >= 500) return clearInterval(timer)
+          square1El.style.left = squareLeft + 1 + 'px'
+        }, 17)
       }
-      ballMove()
 
       // requestAnimationFrame 版
-      function ballMove2() {
+      function squareMove2() {
         let timer = null
-        ball2El.style.left = '0px'
+        square2El.style.left = '0px'
 
         function updateAnimation() {
-          const ballLeft = parseInt(ball2El.style.left)
-          if (ballLeft >= 500) return cancelAnimationFrame(timer)
-          ball2El.style.left = ballLeft + 1 + 'px'
+          const squareLeft = parseInt(square2El.style.left)
+          if (squareLeft >= 500) return cancelAnimationFrame(timer)
+          square2El.style.left = squareLeft + 1 + 'px'
           window.requestAnimationFrame(updateAnimation)
         }
 
         window.requestAnimationFrame(updateAnimation)
       }
 
-      ballMove2()
+      document.querySelector('.btn').addEventListener('click', () => {
+        squareMove()
+        squareMove2()
+      })
     </script>
   </body>
 </html>
