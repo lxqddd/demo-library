@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>地图</title>
+  </head>
+  <body>
+    <div class="map"></div>
+    <script src="./echarts/echarts.js"></script>
+    <script>
+      const city = [
+        {
+          name: '浙江省',
+          id: 33
+        },
+
+        {
+          name: '杭州市',
+          id: 330100
+        },
+
+        {
+          name: '宁波市',
+          id: 330200
+        },
+
+        {
+          name: '温州市',
+          id: 330300
+        },
+
+        {
+          name: '嘉兴市',
+          id: 330400
+        },
+
+        {
+          name: '湖州市',
+          id: 330500
+        },
+
+        {
+          name: '金华市',
+          id: 330600
+        },
+
+        {
+          name: '绍兴市',
+          id: 330700
+        },
+
+        {
+          name: '衢州市',
+          id: 330800
+        },
+
+        {
+          name: '舟山市',
+          id: 330900
+        },
+
+        {
+          name: '台州市',
+          id: 331000
+        },
+
+        {
+          name: '丽水市',
+          id: 331100
+        }
+      ]
+
+      const mapStack = []
+      const curMap = {}
+      const cityMap = {}
+      let name = '浙江省'
+      let mapId = ''
+
+      function getMapId() {
+        city.forEach((item) => {
+          if (item.name === name) {
+            mapId = item.id
+          }
+        })
+      }
+    </script>
+  </body>
+</html>

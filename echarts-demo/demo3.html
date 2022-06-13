@@ -51,15 +51,15 @@
         [0, 23, 5]
       ]
       const option = {
-        legend: {
-          data: ['时间', '周', '值'],
-          textStyle: { fontSize: 14, color: '#fff' },
-          itemWidth: 25,
-          itemHeight: 15,
-          itemGap: 15,
-          bottom: '0%',
-          selectedMode: false
-        },
+        // legend: {
+        //   data: ['时间', '周', '值'],
+        //   textStyle: { fontSize: 14, color: '#fff' },
+        //   itemWidth: 25,
+        //   itemHeight: 15,
+        //   itemGap: 15,
+        //   bottom: '0%',
+        //   selectedMode: false
+        // },
         tooltip: {},
         visualMap: {
           max: 20,
@@ -92,11 +92,21 @@
         yAxis3D: {
           type: 'category',
           data: days,
-          name: '周'
+          name: '周',
+          axisPointer: {
+            lineStyle: {
+              color: '#009'
+            }
+          }
         },
         zAxis3D: {
           type: 'value',
-          name: '值'
+          name: '值',
+          axisPointer: {
+            lineStyle: {
+              color: '#900'
+            }
+          }
         },
         grid3D: {
           boxWidth: 200,
@@ -114,6 +124,10 @@
             }
           }
         },
+        axisLine: {
+          show: false
+        },
+
         series: [
           {
             type: 'bar3D',
