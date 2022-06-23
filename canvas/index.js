@@ -1,5 +1,6 @@
 const container = document.getElementsByClassName('draw-container')[0]
 
+// 矩形
 function drawerRect() {
   const ctx = container.getContext('2d')
 
@@ -11,6 +12,7 @@ function drawerRect() {
 
 // drawerRect()
 
+// 三角形
 function drawTriangle() {
   const context = container.getContext('2d')
   context.beginPath()
