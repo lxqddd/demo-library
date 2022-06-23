@@ -27,3 +27,23 @@ function drawTriangle() {
 }
 
 // drawTriangle()
+
+// 笑脸
+function drawFace() {
+  const context = container.getContext('2d')
+  console.log(context)
+
+  context.beginPath()
+
+  context.arc(250, 250, 200, 100, Math.PI * 2, true)
+  context.moveTo(200, 170)
+  context.arc(200, 200, 30, 30, Math.PI * 2, true)
+  context.moveTo(330, 200)
+  context.arc(300, 200, 30, 0, Math.PI * 2, true)
+  context.moveTo(100, 250)
+  context.arc(250, 250, 0, 180, Math.PI, true)
+
+  context.stroke()
+}
+
+drawFace()

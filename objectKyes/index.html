@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>object Kyes</title>
+  </head>
+  <body>
+    <script>
+      const initialData = {
+        name: 'rockets',
+        team: ['Harden', 'Paul'],
+        location: { country: 'USA', city: 'Houston' },
+        goal: [{ champion: true }]
+      }
+
+      const changedData = {
+        name: 'rockets',
+        team: ['Harden', 'Paul', 'House'],
+        location: { country: 'USA', city: 'Houston' },
+        goal: [{ champion: true }]
+      }
+
+      calcEqual(initialData, changedData)
+      //得到类似{name:true,team:false,location:true,goal:true}结果
+      //true表示值一致，false表示值发生改变
+    </script>
+  </body>
+</html>
