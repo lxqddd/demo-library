@@ -46,14 +46,13 @@ function drawClock() {
   context.beginPath()
   context.arc(200, 200, 120, 0, Math.PI * 2)
   context.moveTo(310, 200)
-
   context.arc(200, 200, 110, 0, Math.PI * 2)
 
-  context.moveTo(200, 200)
-  context.lineTo(200, 120)
-
-  context.moveTo(200, 200)
-  context.lineTo(260, 200)
+  context.translate(200, 200)
+  context.moveTo(0, 0)
+  context.lineTo(0, -80)
+  context.moveTo(0, 0)
+  context.lineTo(60, 0)
 
   context.strokeStyle = '#fff'
 
@@ -62,10 +61,10 @@ function drawClock() {
   context.textBaseline = 'middle'
   context.fillStyle = '#fff'
 
-  context.fillText('0', 200, 110)
-  context.fillText('3', 290, 200)
-  context.fillText('6', 200, 290)
-  context.fillText('9', 110, 200)
+  context.fillText('0', 0, -95)
+  context.fillText('3', 95, 0)
+  context.fillText('6', 0, 95)
+  context.fillText('9', -95, 0)
 
   context.stroke()
 }
