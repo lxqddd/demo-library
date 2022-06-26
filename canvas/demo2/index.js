@@ -40,4 +40,23 @@ function drawArc() {
   context.stroke()
 }
 
-drawArc()
+// drawArc()
+
+function drawClock() {
+  context.beginPath()
+  context.arc(200, 200, 120, 0, Math.PI * 2)
+  context.moveTo(310, 200)
+
+  context.arc(200, 200, 110, 0, Math.PI * 2)
+
+  context.moveTo(200, 200)
+  context.lineTo(200, 120)
+
+  context.moveTo(200, 200)
+  context.lineTo(260, 200)
+
+  context.strokeStyle = '#fff'
+  context.stroke()
+}
+
+drawClock()
