@@ -63,6 +63,9 @@ function drawClock() {
   context.fillStyle = '#fff'
 
   context.fillText('0', 200, 110)
+  context.fillText('3', 290, 200)
+  context.fillText('6', 200, 290)
+  context.fillText('9', 110, 200)
 
   context.stroke()
 }
