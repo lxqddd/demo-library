@@ -29,4 +29,15 @@ function clearRect() {
   context.clearRect(160, 160, 30, 30)
 }
 
-clearRect()
+// clearRect()
+
+function drawArc() {
+  context.beginPath()
+  context.arc(200, 200, 100, 0, Math.PI * 2, true)
+
+  context.strokeStyle = '#fff'
+
+  context.stroke()
+}
+
+drawArc()
