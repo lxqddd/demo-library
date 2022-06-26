@@ -93,4 +93,13 @@ function useSave() {
   context.fillRect(0, 0, 100, 100)
 }
 
-useSave()
+// useSave()
+
+function useDrawImage() {
+  const img = new Image()
+  img.src = '../../images/requestAnimationFrame.png'
+  img.onload = function () {
+    context.drawImage(img, 10, 10)
+  }
+}
+useDrawImage()
