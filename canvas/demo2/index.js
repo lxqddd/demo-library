@@ -48,14 +48,18 @@ function drawClock() {
   context.moveTo(310, 200)
   context.arc(200, 200, 110, 0, Math.PI * 2)
 
+  // 移动坐标原点到圆心
   context.translate(200, 200)
+
+  // 旋转图形
+  context.rotate((Math.PI / 180) * 90)
+
   context.moveTo(0, 0)
   context.lineTo(0, -80)
   context.moveTo(0, 0)
   context.lineTo(60, 0)
 
   context.strokeStyle = '#fff'
-
   context.font = '12px Arial'
   context.textAlign = 'center'
   context.textBaseline = 'middle'
@@ -69,4 +73,24 @@ function drawClock() {
   context.stroke()
 }
 
-drawClock()
+// drawClock()
+
+function useSave() {
+  context.beginPath()
+
+  context.fillStyle = '#f00'
+  context.save()
+
+  context.fillStyle = '#0f0'
+  context.translate(100, 100)
+  context.save()
+  context.fillStyle = '#00f'
+  context.fillRect(0, 0, 100, 100)
+
+  context.restore()
+  context.fillRect(10, 10, 100, 100)
+  context.restore()
+  context.fillRect(0, 0, 100, 100)
+}
+
+useSave()
