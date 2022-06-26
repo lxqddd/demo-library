@@ -56,6 +56,14 @@ function drawClock() {
   context.lineTo(260, 200)
 
   context.strokeStyle = '#fff'
+
+  context.font = '12px Arial'
+  context.textAlign = 'center'
+  context.textBaseline = 'middle'
+  context.fillStyle = '#fff'
+
+  context.fillText('0', 200, 110)
+
   context.stroke()
 }
 
