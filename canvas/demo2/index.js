@@ -102,4 +102,4 @@ function useDrawImage() {
     context.drawImage(img, 10, 10)
   }
 }
-useDrawImage()
+// useDrawImage()
