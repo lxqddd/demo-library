@@ -52,18 +52,22 @@ function drawClock() {
   context.translate(200, 200)
 
   // 旋转图形
-  context.rotate((Math.PI / 180) * 90)
+  // context.rotate((Math.PI / 180) * 90)
 
   context.moveTo(0, 0)
   context.lineTo(0, -80)
   context.moveTo(0, 0)
   context.lineTo(60, 0)
 
-  context.strokeStyle = '#fff'
-  context.font = '12px Arial'
-  context.textAlign = 'center'
-  context.textBaseline = 'middle'
-  context.fillStyle = '#fff'
+  function drawNumber() {
+    const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    context.beginPath()
+    context.strokeStyle = '#fff'
+    context.font = '12px Arial'
+    context.textAlign = 'center'
+    context.textBaseline = 'middle'
+    context.fillStyle = '#fff'
+  }
 
   context.fillText('0', 0, -95)
   context.fillText('3', 95, 0)
@@ -73,7 +77,7 @@ function drawClock() {
   context.stroke()
 }
 
-// drawClock()
+drawClock()
 
 function useSave() {
   context.beginPath()
