@@ -69,8 +69,8 @@ function drawClock() {
     for (var i = 0; i < arr.length; i++) {
       context.fillText(
         arr[i],
-        108 * Math.cos(((i * 30 - 60) * Math.PI) / 180),
-        108 * Math.sin(((i * 30 - 60) * Math.PI) / 180)
+        90 * Math.cos(((i * 30 - 60) * Math.PI) / 180),
+        90 * Math.sin(((i * 30 - 60) * Math.PI) / 180)
       )
     }
   }
