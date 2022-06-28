@@ -61,18 +61,21 @@ function drawClock() {
 
   function drawNumber() {
     const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-    context.beginPath()
     context.strokeStyle = '#fff'
     context.font = '12px Arial'
     context.textAlign = 'center'
     context.textBaseline = 'middle'
     context.fillStyle = '#fff'
+    for (var i = 0; i < arr.length; i++) {
+      context.fillText(
+        arr[i],
+        108 * Math.cos(((i * 30 - 60) * Math.PI) / 180),
+        108 * Math.sin(((i * 30 - 60) * Math.PI) / 180)
+      )
+    }
   }
 
-  context.fillText('0', 0, -95)
-  context.fillText('3', 95, 0)
-  context.fillText('6', 0, 95)
-  context.fillText('9', -95, 0)
+  drawNumber()
 
   context.stroke()
 }
