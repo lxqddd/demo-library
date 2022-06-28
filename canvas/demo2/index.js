@@ -44,9 +44,6 @@ function drawArc() {
 
 function drawClock() {
   context.beginPath()
-  context.arc(200, 200, 120, 0, Math.PI * 2)
-  context.moveTo(310, 200)
-  context.arc(200, 200, 110, 0, Math.PI * 2)
 
   // 移动坐标原点到圆心
   context.translate(200, 200)
@@ -54,10 +51,7 @@ function drawClock() {
   // 旋转图形
   // context.rotate((Math.PI / 180) * 90)
 
-  context.moveTo(0, 0)
-  context.lineTo(0, -80)
-  context.moveTo(0, 0)
-  context.lineTo(60, 0)
+  context.save()
 
   function drawNumber() {
     const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
@@ -73,9 +67,41 @@ function drawClock() {
         90 * Math.sin(((i * 30 - 60) * Math.PI) / 180)
       )
     }
+    context.save()
+  }
+  drawNumber()
+
+  function drawDot() {
+    for (let i = 0; i < 60; i++) {
+      let rad = ((Math.PI * 2) / 60) * i
+      let x = Math.cos(rad) * (130 - 18)
+      let y = Math.sin(rad) * (130 - 18)
+      console.log(x, y)
+
+      context.beginPath()
+
+      if (i % 5 === 0) {
+        context.fillStyle = '#000'
+      } else {
+        context.fillStyle = '#ccc'
+      }
+      context.arc(x, y, 2, 0, 2 * Math.PI, false)
+      context.fill()
+    }
+    context.save()
   }
 
-  drawNumber()
+  drawDot()
+
+  drawDot()
+  context.moveTo(130, 0)
+  context.arc(0, 0, 130, 0, Math.PI * 2)
+  context.moveTo(120, 0)
+  context.arc(0, 0, 120, 0, Math.PI * 2)
+  context.moveTo(0, 0)
+  context.lineTo(0, -80)
+  context.moveTo(0, 0)
+  context.lineTo(60, 0)
 
   context.stroke()
 }
