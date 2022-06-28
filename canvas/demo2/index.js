@@ -114,7 +114,7 @@ function drawClock() {
   context.stroke()
 }
 
-drawClock()
+// drawClock()
 
 function useSave() {
   context.beginPath()
