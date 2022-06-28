@@ -54,32 +54,29 @@ function drawClock() {
   context.save()
 
   function drawNumber() {
-    const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    const arr = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2]
     context.strokeStyle = '#fff'
     context.font = '12px Arial'
     context.textAlign = 'center'
     context.textBaseline = 'middle'
     context.fillStyle = '#fff'
     for (var i = 0; i < arr.length; i++) {
+      context.save()
       context.fillText(
         arr[i],
-        90 * Math.cos(((i * 30 - 60) * Math.PI) / 180),
-        90 * Math.sin(((i * 30 - 60) * Math.PI) / 180)
+        90 * Math.cos((i * 30 * Math.PI) / 180),
+        90 * Math.sin((i * 30 * Math.PI) / 180)
       )
     }
-    context.save()
   }
-  drawNumber()
 
   function drawDot() {
     for (let i = 0; i < 60; i++) {
       let rad = ((Math.PI * 2) / 60) * i
       let x = Math.cos(rad) * (130 - 18)
       let y = Math.sin(rad) * (130 - 18)
-      console.log(x, y)
 
       context.beginPath()
-
       if (i % 5 === 0) {
         context.fillStyle = '#000'
       } else {
@@ -91,17 +88,28 @@ function drawClock() {
     context.save()
   }
 
-  drawDot()
+  function drawCircle() {
+    context.moveTo(130, 0)
+    context.arc(0, 0, 130, 0, Math.PI * 2)
+    context.moveTo(120, 0)
+    context.arc(0, 0, 120, 0, Math.PI * 2)
+    context.save()
+  }
 
+  function drawLine() {
+    context.moveTo(0, 0)
+    context.lineWidth = 6
+    context.lineCap = 'round'
+    context.lineTo(0, -80)
+    context.moveTo(0, 0)
+    context.lineTo(0, 0)
+  }
+
+  drawNumber()
   drawDot()
-  context.moveTo(130, 0)
-  context.arc(0, 0, 130, 0, Math.PI * 2)
-  context.moveTo(120, 0)
-  context.arc(0, 0, 120, 0, Math.PI * 2)
-  context.moveTo(0, 0)
-  context.lineTo(0, -80)
-  context.moveTo(0, 0)
-  context.lineTo(60, 0)
+  drawDot()
+  drawCircle()
+  drawLine()
 
   context.stroke()
 }
