@@ -1,6 +1,12 @@
 const draw = document.getElementById('draw')
 const context = draw.getContext('2d')
 
+function drawCircle(params = { context, x, y, radius, anticlockwise }) {
+  const { context, x, y, radius, anticlockwise } = params
+  context.save()
+  context.arc(x, y, radius, 0, (Math.PI / 180) * 2, anticlockwise)
+}
+
 function drawTaiChi() {
   context.save()
   context.beginPath()
