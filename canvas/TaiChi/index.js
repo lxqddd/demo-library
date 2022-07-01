@@ -13,6 +13,17 @@ function drawStrokeCircle(context, radius) {
   context.restore()
 }
 
+function drawFillCircle(params = { context, radius, color }) {
+  const { context, radius, color, x, y } = params
+  context.save()
+  context.beginPath()
+  context.fillStyle = color
+  context.arc(x, y, radius, 0, Math.PI * 2)
+  context.fill()
+  context.closePath()
+  context.restore()
+}
+
 function drawTaiChi() {
   drawStrokeCircle(context, 100)
 
@@ -27,22 +38,11 @@ function drawTaiChi() {
   context.fill()
   context.closePath()
 
-  context.beginPath()
   context.moveTo(0, -75)
-  context.fillStyle = '#fff'
-  context.arc(0, -50, 25, 0, Math.PI * 2)
-  context.fill()
-  context.closePath()
-  context.restore()
+  drawFillCircle({ context, radius: 25, color: '#fff', x: 0, y: -50 })
 
-  context.save()
-  context.beginPath()
   context.moveTo(0, 75)
-  context.fillStyle = '#000'
-  context.arc(0, 50, 24, 0, Math.PI * 2)
-  context.fill()
-  context.closePath()
-  context.restore()
+  drawFillCircle({ context, radius: 25, color: '#000', x: 0, y: 50 })
 }
 
 function drawer() {
