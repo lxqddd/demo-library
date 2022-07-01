@@ -1,17 +1,21 @@
 const draw = document.getElementById('draw')
 const context = draw.getContext('2d')
 
-function drawTaiChi() {
+function drawStrokeCircle(context, radius) {
   context.save()
   context.beginPath()
   context.strokeStyle = '#fff'
-  context.shadowBlur = 5
+  context.shadowBlur = 9
   context.shadowColor = '#fff'
 
-  context.arc(0, 0, 100, 0, Math.PI * 2)
+  context.arc(0, 0, radius, 0, Math.PI * 2)
   context.closePath()
   context.stroke()
   context.restore()
+}
+
+function drawTaiChi() {
+  drawStrokeCircle(context, 100)
 
   context.beginPath()
   context.fillStyle = '#000'
