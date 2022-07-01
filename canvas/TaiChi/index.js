@@ -8,10 +8,10 @@ function drawTaiChi() {
   context.shadowBlur = 5
   context.shadowColor = '#fff'
 
-  context.arc(0, 0, 100, 0, Math.PI2)
+  context.arc(0, 0, 100, 0, Math.PI * 2)
   context.closePath()
   context.stroke()
-  // context.restore()
+  context.restore()
 
   context.beginPath()
   context.fillStyle = '#000'
