@@ -37,12 +37,18 @@ function drawTaiChi() {
   context.arc(0, -50, 50, (Math.PI / 180) * -90, (Math.PI / 180) * 90, false)
   context.fill()
   context.closePath()
+  context.restore()
 
   context.moveTo(0, -75)
-  drawFillCircle({ context, radius: 25, color: '#fff', x: 0, y: -50 })
+  drawFillCircle({ context, radius: 20, color: '#fff', x: 0, y: -50 })
 
   context.moveTo(0, 75)
-  drawFillCircle({ context, radius: 25, color: '#000', x: 0, y: 50 })
+  drawFillCircle({ context, radius: 20, color: '#000', x: 0, y: 50 })
+}
+
+// 八卦方位： 乾一 兑二 离三 震四 巽五 坎六 艮七 坤八
+function drawGossip() {
+  //
 }
 
 function drawer() {
