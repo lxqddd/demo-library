@@ -47,8 +47,21 @@ function drawTaiChi() {
 }
 
 // 八卦方位： 乾一 兑二 离三 震四 巽五 坎六 艮七 坤八
-function drawGossip() {
-  //
+function drawGossip(context) {
+  context.save()
+  const gossip = [
+    '乾一',
+    '兑二',
+    '离三',
+    '震四',
+    '巽五',
+    '坎六',
+    '艮七',
+    '坤八'
+  ]
+  context.beginPath()
+
+  context.restore()
 }
 
 function drawer() {
