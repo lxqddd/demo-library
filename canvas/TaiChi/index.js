@@ -46,6 +46,14 @@ function drawTaiChi() {
   drawFillCircle({ context, radius: 20, color: '#000', x: 0, y: 50 })
 }
 
+function fiveElement(context) {
+  context.save()
+  context.beginPath()
+  const element = ['金', '木', '水', '火', '土']
+
+  context.restore()
+}
+
 // 八卦方位： 乾一 兑二 离三 震四 巽五 坎六 艮七 坤八
 function drawGossip(context) {
   context.save()
