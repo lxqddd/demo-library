@@ -49,10 +49,9 @@ function drawTaiChi() {
 }
 
 function fiveElement(context) {
+  const element = ['金', '木', '水', '火', '土']
   context.save()
   context.beginPath()
-  const element = ['金', '木', '水', '火', '土']
-
   context.font = '30px sans-serif'
   context.textAlign = 'center'
   context.textBaseline = 'middle'
