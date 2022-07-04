@@ -48,27 +48,27 @@ function drawTaiChi() {
   drawFillCircle({ context, radius: 20, color: '#000', x: 0, y: 50 })
 }
 
-function fiveElement(context) {
+function fiveElement() {
   const element = ['金', '木', '水', '火', '土']
   context.save()
   context.beginPath()
-  context.font = '30px sans-serif'
+  context.font = '15px sans-serif'
   context.textAlign = 'center'
   context.textBaseline = 'middle'
   context.fillStyle = '#fff'
   element.forEach((item, index) => {
     context.fillText(
       item,
-      Math.cos((Math.PI / 180) * (72 * index)) * 130,
-      Math.sin((Math.PI / 180) * (72 * index)) * 130
+      Math.cos((Math.PI / 180) * (72 * index - 90)) * 115,
+      Math.sin((Math.PI / 180) * (72 * index - 90)) * 115
     )
   })
+  drawStrokeCircle(context, 130)
   context.restore()
 }
 
 // 八卦方位： 乾一 兑二 离三 震四 巽五 坎六 艮七 坤八
-function drawGossip(context) {
-  context.save()
+function drawGossip() {
   const gossip = [
     '乾一',
     '兑二',
@@ -79,7 +79,21 @@ function drawGossip(context) {
     '艮七',
     '坤八'
   ]
+  context.save()
   context.beginPath()
+  context.font = '15px sans-serif'
+  context.textAlign = 'center'
+  context.textBaseline = 'middle'
+  context.fillStyle = '#fff'
+  gossip.forEach((item, index) => {
+    context.fillText(
+      item,
+      Math.cos((Math.PI / 180) * (45 * index - 90)) * 150,
+      Math.sin((Math.PI / 180) * (45 * index - 90)) * 150
+    )
+  })
+
+  drawStrokeCircle(context, 170)
 
   context.restore()
 }
@@ -87,6 +101,8 @@ function drawGossip(context) {
 function drawer() {
   context.translate(400, 400)
   drawTaiChi()
+  fiveElement()
+  drawGossip()
 }
 
 drawer()
