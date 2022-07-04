@@ -1,3 +1,5 @@
+// 角度转弧度公式：(Math.PI / 180) * 角度
+
 const draw = document.getElementById('draw')
 const context = draw.getContext('2d')
 
@@ -51,6 +53,17 @@ function fiveElement(context) {
   context.beginPath()
   const element = ['金', '木', '水', '火', '土']
 
+  context.font = '30px sans-serif'
+  context.textAlign = 'center'
+  context.textBaseline = 'middle'
+  context.fillStyle = '#fff'
+  element.forEach((item, index) => {
+    context.fillText(
+      item,
+      Math.cos((Math.PI / 180) * (72 * index)) * 130,
+      Math.sin((Math.PI / 180) * (72 * index)) * 130
+    )
+  })
   context.restore()
 }
 
