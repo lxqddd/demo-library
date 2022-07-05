@@ -28,7 +28,6 @@ function drawFillCircle(params = { context, radius, color }) {
 
 function drawTaiChi() {
   drawStrokeCircle(context, 100)
-
   context.save()
   context.beginPath()
   context.fillStyle = '#fff'
@@ -40,10 +39,8 @@ function drawTaiChi() {
   context.fill()
   context.closePath()
   context.restore()
-
   context.moveTo(0, -75)
   drawFillCircle({ context, radius: 20, color: '#fff', x: 0, y: -50 })
-
   context.moveTo(0, 75)
   drawFillCircle({ context, radius: 20, color: '#000', x: 0, y: 50 })
 }
@@ -67,7 +64,6 @@ function fiveElement() {
   context.restore()
 }
 
-// 八卦方位： 乾一 兑二 离三 震四 巽五 坎六 艮七 坤八
 function drawGossip() {
   const gossip = [
     '乾一',
@@ -92,9 +88,7 @@ function drawGossip() {
       Math.sin((Math.PI / 180) * (45 * index - 90)) * 150
     )
   })
-
   drawStrokeCircle(context, 170)
-
   context.restore()
 }
 
