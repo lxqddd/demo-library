@@ -160,6 +160,65 @@ function drawHeavenlyStem() {
   context.restore()
 }
 
+function drawHours() {
+  context.save()
+  context.beginPath()
+  context.font = '15px sans-serif'
+  context.textAlign = 'center'
+  context.fillStyle = '#fff'
+  context.translate(0, 0)
+  for (let i = 0; i <= 23; i++) {
+    context.fillText(
+      i,
+      Math.cos((Math.PI / 180) * (15 * i - 90)) * 245,
+      Math.sin((Math.PI / 180) * (15 * i - 90)) * 245
+    )
+  }
+  context.restore()
+  context.save()
+  context.translate(0, -5)
+  drawStrokeCircle(context, 260)
+  context.restore()
+}
+
+function drawMin() {
+  context.save()
+  context.beginPath()
+  context.font = '15px sans-serif'
+  context.textAlign = 'center'
+  context.fillStyle = '#fff'
+  context.translate(0, 0)
+  for (let i = 0; i <= 59; i++) {
+    context.fillText(
+      i,
+      Math.cos((Math.PI / 180) * (6 * i - 90)) * 275,
+      Math.sin((Math.PI / 180) * (6 * i - 90)) * 275
+    )
+  }
+  context.translate(0, -5)
+  drawStrokeCircle(context, 290)
+  context.restore()
+}
+
+function drawSec() {
+  context.save()
+  context.beginPath()
+  context.font = '15px sans-serif'
+  context.textAlign = 'center'
+  context.fillStyle = '#fff'
+  context.translate(0, 0)
+  for (let i = 0; i <= 59; i++) {
+    context.fillText(
+      i,
+      Math.cos((Math.PI / 180) * (6 * i - 90)) * 305,
+      Math.sin((Math.PI / 180) * (6 * i - 90)) * 305
+    )
+  }
+  context.translate(0, -5)
+  drawStrokeCircle(context, 323)
+  context.restore()
+}
+
 function drawer() {
   context.translate(400, 400)
   drawTaiChi()
@@ -167,6 +226,9 @@ function drawer() {
   drawGossip()
   drawEarthlyBranches()
   drawHeavenlyStem()
+  drawHours()
+  drawMin()
+  drawSec()
 }
 
 drawer()
