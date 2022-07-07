@@ -140,6 +140,24 @@ function drawHeavenlyStem() {
     '壬',
     '癸'
   ]
+  context.save()
+  context.beginPath()
+  context.font = '15px sans-serif'
+  context.textAlign = 'center'
+  context.fillStyle = '#fff'
+  context.translate(0, 0)
+  heavenlyStem.forEach((item, index) => {
+    context.fillText(
+      item,
+      Math.cos((Math.PI / 180) * (36 * index - 90)) * 215,
+      Math.sin((Math.PI / 180) * (36 * index - 90)) * 215
+    )
+  })
+  context.save()
+  context.translate(0, -5)
+
+  drawStrokeCircle(context, 230)
+  context.restore()
 }
 
 function drawer() {
@@ -148,6 +166,7 @@ function drawer() {
   fiveElement()
   drawGossip()
   drawEarthlyBranches()
+  drawHeavenlyStem()
 }
 
 drawer()
