@@ -92,11 +92,62 @@ function drawGossip() {
   context.restore()
 }
 
+function drawEarthlyBranches() {
+  const earthlyBranches = [
+    '子',
+    '丑',
+    '寅',
+    '卯',
+    '辰',
+    '巳',
+    '午',
+    '未',
+    '申',
+    '酉',
+    '戌',
+    '亥'
+  ]
+  context.save()
+  context.beginPath()
+  context.font = '15px sans-serif'
+  context.textAlign = 'center'
+  context.fillStyle = '#fff'
+  context.translate(0, 5)
+  earthlyBranches.forEach((item, index) => {
+    context.fillText(
+      item,
+      Math.cos((Math.PI / 180) * (30 * index - 90)) * 183,
+      Math.sin((Math.PI / 180) * (30 * index - 90)) * 183
+    )
+  })
+  context.save()
+  context.translate(0, -5)
+
+  drawStrokeCircle(context, 200)
+  context.restore()
+}
+
+function drawHeavenlyStem() {
+  const heavenlyStem = [
+    '甲',
+    '乙',
+    '丙',
+    '丁',
+    '戊',
+    '己',
+    '庚',
+    '辛',
+    '壬',
+    '癸'
+  ]
+}
+
 function drawer() {
   context.translate(400, 400)
   drawTaiChi()
   fiveElement()
   drawGossip()
+  drawEarthlyBranches()
 }
 
 drawer()
