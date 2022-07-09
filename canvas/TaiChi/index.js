@@ -26,10 +26,31 @@ function drawFillCircle(params = { context, radius, color }) {
   context.restore()
 }
 
-function drawTaiChi() {
+function clearArcFun(x,y,r,cxt){
+  //(x,y)为要清除的圆的圆心，r为半径，cxt为context
+  var stepClear=1;//别忘记这一步  
+  clearArc(x,y,r);
+  function clearArc(x,y,radius){
+      var calcWidth=radius-stepClear;  
+      var calcHeight=Math.sqrt(radius*radius-calcWidth*calcWidth);  
+      var posX=x-calcWidth;
+      var posY=y-calcHeight;
+      var widthX=2*calcWidth;  
+      var heightY=2*calcHeight;
+      if(stepClear<=radius){  
+          cxt.clearRect(posX,posY,widthX,heightY);  
+          stepClear+=1;  
+          clearArc(x,y,radius);  
+      }
+  }
+}
+
+function drawTaiChi(rotate) {
   drawStrokeCircle(context, 100)
   context.save()
   context.beginPath()
+  clearArcFun(0, 0, 100, context)
+  context.rotate(Math.PI / 180 * rotate)
   context.fillStyle = '#fff'
   context.arc(0, 0, 100, (Math.PI / 180) * 90, (Math.PI / 180) * -90, true)
   context.moveTo(0, 100)
@@ -38,11 +59,12 @@ function drawTaiChi() {
   context.arc(0, -50, 50, (Math.PI / 180) * -90, (Math.PI / 180) * 90, false)
   context.fill()
   context.closePath()
-  context.restore()
+  
   context.moveTo(0, -75)
   drawFillCircle({ context, radius: 20, color: '#fff', x: 0, y: -50 })
   context.moveTo(0, 75)
   drawFillCircle({ context, radius: 20, color: '#000', x: 0, y: 50 })
+  context.restore()
 }
 
 function fiveElement() {
@@ -221,7 +243,17 @@ function drawSec() {
 
 function drawer() {
   context.translate(400, 400)
-  drawTaiChi()
+  let taiChiRotate = 0
+  function taiChiAnimation() {
+    
+    requestAnimationFrame(() => {
+      drawTaiChi(taiChiRotate)
+      taiChiRotate += 1
+      taiChiAnimation()
+    })
+  }
+  taiChiAnimation()
+  
   fiveElement()
   drawGossip()
   drawEarthlyBranches()
