@@ -265,4 +265,3 @@ function drawer() {
 
 drawer()
 
-console.log(context)
