@@ -26,11 +26,31 @@ function drawFillCircle(params = { context, radius, color }) {
   context.restore()
 }
 
+function clearArcFun(x, y, r, cxt) {
+  //(x,y)为要清除的圆的圆心，r为半径，cxt为context
+  var stepClear = 1 //别忘记这一步
+  clearArc(x, y, r)
+  function clearArc(x, y, radius) {
+    var calcWidth = radius - stepClear
+    var calcHeight = Math.sqrt(radius * radius - calcWidth * calcWidth)
+    var posX = x - calcWidth
+    var posY = y - calcHeight
+    var widthX = 2 * calcWidth
+    var heightY = 2 * calcHeight
+    if (stepClear <= radius) {
+      cxt.clearRect(posX, posY, widthX, heightY)
+      stepClear += 1
+      clearArc(x, y, radius)
+    }
+  }
+}
+
 function drawTaiChi(rotate) {
   drawStrokeCircle(context, 100)
   context.save()
   context.beginPath()
-  context.rotate(Math.PI / 180 * rotate);
+  clearArcFun(0, 0, 100, context)
+  context.rotate((Math.PI / 180) * rotate)
   context.fillStyle = '#fff'
   context.arc(0, 0, 100, (Math.PI / 180) * 90, (Math.PI / 180) * -90, true)
   context.moveTo(0, 100)
@@ -39,11 +59,12 @@ function drawTaiChi(rotate) {
   context.arc(0, -50, 50, (Math.PI / 180) * -90, (Math.PI / 180) * 90, false)
   context.fill()
   context.closePath()
-  context.restore()
+
   context.moveTo(0, -75)
   drawFillCircle({ context, radius: 20, color: '#fff', x: 0, y: -50 })
   context.moveTo(0, 75)
   drawFillCircle({ context, radius: 20, color: '#000', x: 0, y: 50 })
+  context.restore()
 }
 
 function fiveElement() {
@@ -93,17 +114,152 @@ function drawGossip() {
   context.restore()
 }
 
-context.translate(400, 400)
-let taiChiRotate = 0
-function drawer() {
-  context.clearRect(-40, -40, 800, 800);
-  taiChiRotate += 1
-  requestAnimationFrame(() => {
-    drawTaiChi(taiChiRotate)
-    fiveElement()
-    drawGossip()
-    drawer()
+function drawEarthlyBranches() {
+  const earthlyBranches = [
+    '子',
+    '丑',
+    '寅',
+    '卯',
+    '辰',
+    '巳',
+    '午',
+    '未',
+    '申',
+    '酉',
+    '戌',
+    '亥'
+  ]
+  context.save()
+  context.beginPath()
+  context.font = '15px sans-serif'
+  context.textAlign = 'center'
+  context.fillStyle = '#fff'
+  context.translate(0, 5)
+  earthlyBranches.forEach((item, index) => {
+    context.fillText(
+      item,
+      Math.cos((Math.PI / 180) * (30 * index - 90)) * 183,
+      Math.sin((Math.PI / 180) * (30 * index - 90)) * 183
+    )
   })
+  context.save()
+  context.translate(0, -5)
+
+  drawStrokeCircle(context, 200)
+  context.restore()
+}
+
+function drawHeavenlyStem() {
+  const heavenlyStem = [
+    '甲',
+    '乙',
+    '丙',
+    '丁',
+    '戊',
+    '己',
+    '庚',
+    '辛',
+    '壬',
+    '癸'
+  ]
+  context.save()
+  context.beginPath()
+  context.font = '15px sans-serif'
+  context.textAlign = 'center'
+  context.fillStyle = '#fff'
+  context.translate(0, 0)
+  heavenlyStem.forEach((item, index) => {
+    context.fillText(
+      item,
+      Math.cos((Math.PI / 180) * (36 * index - 90)) * 215,
+      Math.sin((Math.PI / 180) * (36 * index - 90)) * 215
+    )
+  })
+  context.save()
+  context.translate(0, -5)
+
+  drawStrokeCircle(context, 230)
+  context.restore()
+}
+
+function drawHours() {
+  context.save()
+  context.beginPath()
+  context.font = '15px sans-serif'
+  context.textAlign = 'center'
+  context.fillStyle = '#fff'
+  context.translate(0, 0)
+  for (let i = 0; i <= 23; i++) {
+    context.fillText(
+      i,
+      Math.cos((Math.PI / 180) * (15 * i - 90)) * 245,
+      Math.sin((Math.PI / 180) * (15 * i - 90)) * 245
+    )
+  }
+  context.restore()
+  context.save()
+  context.translate(0, -5)
+  drawStrokeCircle(context, 260)
+  context.restore()
+}
+
+function drawMin() {
+  context.save()
+  context.beginPath()
+  context.font = '15px sans-serif'
+  context.textAlign = 'center'
+  context.fillStyle = '#fff'
+  context.translate(0, 0)
+  for (let i = 0; i <= 59; i++) {
+    context.fillText(
+      i,
+      Math.cos((Math.PI / 180) * (6 * i - 90)) * 275,
+      Math.sin((Math.PI / 180) * (6 * i - 90)) * 275
+    )
+  }
+  context.translate(0, -5)
+  drawStrokeCircle(context, 290)
+  context.restore()
+}
+
+function drawSec() {
+  context.save()
+  context.beginPath()
+  context.font = '15px sans-serif'
+  context.textAlign = 'center'
+  context.fillStyle = '#fff'
+  context.translate(0, 0)
+  for (let i = 0; i <= 59; i++) {
+    context.fillText(
+      i,
+      Math.cos((Math.PI / 180) * (6 * i - 90)) * 305,
+      Math.sin((Math.PI / 180) * (6 * i - 90)) * 305
+    )
+  }
+  context.translate(0, -5)
+  drawStrokeCircle(context, 323)
+  context.restore()
+}
+
+function drawer() {
+  context.translate(400, 400)
+  let taiChiRotate = 0
+  function taiChiAnimation() {
+    requestAnimationFrame(() => {
+      drawTaiChi(taiChiRotate)
+      taiChiRotate += 1
+      taiChiAnimation()
+    })
+  }
+  taiChiAnimation()
+
+  fiveElement()
+  drawGossip()
+  drawEarthlyBranches()
+  drawHeavenlyStem()
+  drawHours()
+  drawMin()
+  drawSec()
 }
 
 drawer()
