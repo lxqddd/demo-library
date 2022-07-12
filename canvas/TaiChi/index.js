@@ -26,10 +26,11 @@ function drawFillCircle(params = { context, radius, color }) {
   context.restore()
 }
 
-function drawTaiChi() {
+function drawTaiChi(rotate) {
   drawStrokeCircle(context, 100)
   context.save()
   context.beginPath()
+  context.rotate(Math.PI / 180 * rotate);
   context.fillStyle = '#fff'
   context.arc(0, 0, 100, (Math.PI / 180) * 90, (Math.PI / 180) * -90, true)
   context.moveTo(0, 100)
@@ -92,13 +93,17 @@ function drawGossip() {
   context.restore()
 }
 
+context.translate(400, 400)
+let taiChiRotate = 0
 function drawer() {
-  context.translate(400, 400)
-  drawTaiChi()
-  fiveElement()
-  drawGossip()
+  context.clearRect(-40, -40, 800, 800);
+  taiChiRotate += 1
+  requestAnimationFrame(() => {
+    drawTaiChi(taiChiRotate)
+    fiveElement()
+    drawGossip()
+    drawer()
+  })
 }
 
 drawer()
-
-console.log(context)
