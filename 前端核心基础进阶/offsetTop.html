@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+    .grandparent {
+      padding-top: 50px;
+    }
+    .wrap {
+      border: solid;
+    }
+  </style>
+</head>
+<body>
+  <div class="grandparent">
+    <div class="sibling">兄弟节点</div>
+    <div class="wrap">
+      <div class="child1">第一个子节点</div>
+      <div class="child2">第二个子节点</div>
+      <div class="child3">第三个子节点</div>
+      <div class="child2">第二个子节点</div>
+      <div class="child3">第三个子节点</div>
+      <div class="child2">第二个子节点</div>
+
+      <div class="child2">第二个子节点</div>
+      <div class="child3">第三个子节点</div>
+      <div class="child2">第二个子节点</div>
+      <div class="child3">第三个子节点</div>
+      
+          
+      <div class="child4">第四个子节点</div>
+    </div>
+  </div>
+  <script>
+    const child1 = document.getElementsByClassName('child1')[0]
+    console.log(child1.offsetTop)
+
+    const child4 = document.getElementsByClassName('child4')[0]
+    console.log(child4.offsetTop)
+    console.log(child4.getBoundingClientRect())
+
+  </script>
+</body>
+</html>
