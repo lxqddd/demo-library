@@ -16,7 +16,7 @@ console.log(proxyPersonClass('xy'))
 const asset = new Proxy({}, {
   set(target, warning, value) {
     if (!value) {
-      console.log(warning)
+      console.error(warning)
     } else {
       console.log('pass')
     }
@@ -25,4 +25,4 @@ const asset = new Proxy({}, {
 
 const weather = 'cold'
 
-asset['the weather is not good'] = weather === 'cold'
+asset['the weather is not good'] = weather === 'good'
