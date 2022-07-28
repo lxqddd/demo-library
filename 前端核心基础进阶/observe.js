@@ -10,42 +10,64 @@ function getType(params) {
   return Object.prototype.toString.call(params).slice(8, -1).toLowerCase()
 }
 
-const observe = (obj) => {
-  if (getType(obj) !== 'object') {
-    return
-  }
+// const observe = (obj) => {
+//   if (getType(obj) !== 'object') {
+//     return
+//   }
   
-  const keys = Object.keys(obj)
-  keys.forEach(key => {
-    const curVal = obj[key]
-    observe(curVal)
-    Object.defineProperty(obj, key, {
-      enumerable: true,
-      configurable: false,
-      get() {
-        console.log('get', key)
-        return curVal
-      },
-      set(val) {
-        console.log('set', key)
-        obj[key] = val
-      }
-    })
-  })
-}
+//   const keys = Object.keys(obj)
+//   keys.forEach(key => {
+//     const curVal = obj[key]
+//     observe(curVal)
+//     Object.defineProperty(obj, key, {
+//       enumerable: true,
+//       configurable: false,
+//       get() {
+//         console.log('get', key)
+//         return curVal
+//       },
+//       set(val) {
+//         console.log('set', key)
+//         obj[key] = val
+//       }
+//     })
+//   })
+// }
 
-const newObj = new Proxy(obj, {
-  enumerable: true,
-  configurable: false,
+let newObj = new Proxy(obj, {
   get(target, prop, receive) {
     console.log('get', prop)
     return target[prop]
   },
   set(target, prop, val) {
-    console.log('set', prop)
+    console.log('proxy set', prop)
     target[prop] = val
   }
 })
+
+const observe = (obj) => {
+  if (!obj || getType(obj) !== 'object') {
+    return
+  }
+  Object.keys(obj).forEach(key => {
+    let curVal = obj[key]
+    if (typeof curVal === "object") {
+      observe(curVal)
+      newObj[key] = new Proxy(curVal, {
+        get(target, prop, receive) {
+          console.log('get', prop)
+          return target[prop]
+        },
+        set(target, prop, val) {
+          console.log('proxy set', prop)
+          target[prop] = val
+        }
+      })
+    }
+  })
+}
+
+observe(obj)
 
 console.log(newObj.name)
 
