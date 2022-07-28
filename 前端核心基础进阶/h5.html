@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .dark-mode {
+      --bg: #666;
+      --text-color: #fff
+    }
+    .light-mode {
+      --bg: #fff;
+      --text-color: #000
+    }
+    details {
+      color: var(--text-color);
+    }
+    body {
+      /* 让chrome浏览器支持12像素一下的字体大小 */
+      -webkit-text-size-adjust: none;
+      font-size: 10px;
+      background-color: var(--bg);
+    }
+  </style>
+</head>
+<body class="light-mode">
+  <div>
+    <details>
+      <summary>hello world</summary>
+      撒娇开发了介绍了卡啊u人大妈暗室逢灯卡死你发个带插卡式管理惨的发生发吉萨
+    </details>
+  </div>
+</body>
+</html>
