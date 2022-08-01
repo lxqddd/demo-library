@@ -1,0 +1,4 @@
+- 核心其实还是使用两个库
+- husky
+  - 提供一些 git hooks，在某个 hook 中执行一些脚本
+- lint-stage
