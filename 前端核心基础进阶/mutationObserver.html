@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MutationObserver</title>
+</head>
+<body>
+  <input type="text" class="inp">
+  <div class="show-text"></div>
+  <script>
+    const input = document.querySelector('.inp')
+    const div = document.querySelector('.show-text')
+    input.addEventListener('input', (e) => {
+      const inputValue = e.target.value
+      console.log(inputValue)
+      div.innerText = inputValue
+    })
+    const observer = new MutationObserver((mutationRecords) => {
+      console.log(mutationRecords)
+      console.log(`div innerText is changed`)
+    })
+    observer.observe(div, {
+      subtree: true,
+      childList: true
+    })
+    observer.observe(input, {
+      attributes: true,
+      subtree: true,
+      characterData: true
+    })
+  </script>
+</body>
+</html>
