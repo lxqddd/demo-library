@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>children</title>
+</head>
+<body>
+  <div>this is children</div>
+  <script>
+    window.addEventListener('message', (e) => {
+      console.log(e)
+      if (e.origin === 'http://127.0.0.1:5502') {
+        console.log(e.data)
+        e.source.postMessage('received! I am child', 'http://127.0.0.1:5502')
+      }
+    })
+  </script>
+</body>
+</html>
