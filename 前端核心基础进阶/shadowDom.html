@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="foo"></div>
+  <div class="bar"></div>
+
+  <script>
+    const foo = document.getElementsByClassName('foo')[0]
+    const bar = document.getElementsByClassName('bar')[0]
+
+    const openShadowDom = foo.attachShadow({ mode: 'open' })
+    const closeShadowDom = bar.attachShadow({ mode: 'closed' })
+
+    console.log('openShadowDom', openShadowDom)
+    console.log('closeShadowDom', closeShadowDom)
+
+  </script>
+</body>
+</html>
