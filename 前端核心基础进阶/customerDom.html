@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custom dom</title>
+  </head>
+  <body>
+    <script>
+      class FooElement extends HTMLElement {
+        constructor() {
+          super()
+          console.log('ctor')
+        }
+
+        connectedCallback() {
+          console.log('connected')
+        }
+
+        disconnectedCallback() {
+          console.log('disconnected')
+        }
+
+        static get observedAttributes () {
+          return ['bar']
+        }
+
+        get bar () {
+          console.log('get bar')
+          return this.getAttribute('bar')
+        }
+
+        set bar (val) {
+          this.setAttribute('bar', val)
+        }
+
+        setAttributeChangeCallback(name, oldVal, newVal) {
+          if (oldVal !== newVal) {
+            this[name] = newVal
+          }
+        }
+      }
+      customElements.define('x-foo', FooElement)
+
+      // create
+      const fooElement = document.createElement('x-foo')
+      // ctor
+
+      
+
+      // mounted
+      document.body.appendChild(fooElement)
+      // connected
+
+      fooElement.setAttribute('bar', 'hello')
+
+      // onMounted
+      document.body.removeChild(fooElement)
+      // disconnected
+    </script>
+  </body>
+</html>
