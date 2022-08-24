@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function ajax (method, url, callback, headers, data, timeout) {
+      const xhr = new XMLHttpRequest()
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+            callback(xhr.responseText)
+          } else {
+            console.log('error', xhr.status)
+          }
+        }
+      }
+
+      xhr.open(method.toLowerCase(), url)
+      if (headers) {
+        for (const key in headers) {
+          if (Object.hasOwnProperty.call(headers, key)) {
+            const element = headers[key];
+            xhr.setRequestHeader(key, headers[key])
+          }
+        }
+      }
+      xhr.timeout = timeout
+      xhr.ontimeout = function () {
+        console.log('request time out')
+      }
+      xhr.send(data)
+    }
+
+    ajax('get', 'http://localhost:5000/dev/user?name=xy&age=18', (res) => {
+      console.log(res)
+    })
+
+    const data = new FormData()
+    data.append('name', '向阳')
+    data.append('age', 18)
+
+    // ajax('post', 'http://localhost:5000/dev/user', (res) => {
+    //   console.log(res)
+    // }, {
+    //   'Content-Type': 'application/x-www-form-urlencoded'
+    // }, data)
+
+    const payload = 'name=向阳&age=18'
+
+    fetch('http://localhost:5000/dev/user', {
+      method: 'POST',
+      body: payload,
+      headers: new Headers({
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+      })
+    })
+    .then(res => {
+      res.text()
+      // res.json()
+    })
+    .then((res) => {
+      console.log(res, 'res')
+    })
+
+    const formData = new FormData()
+    formData.append('name', '向阳')
+    formData.append('age', 18)
+    const r1 = new Request('http://localhost:5000/dev/user', {
+      method: 'POST',
+      body: formData
+    })
+    r1.formData()
+    .then(formData => {
+      console.log(formData.get('name'))
+    })
+
+    navigator.sendBeacon('http://localhost:5000/dev/user', JSON.stringify({
+      name: "向阳",
+      age: 19
+    }))
+  </script>
+</body>
+</html>
