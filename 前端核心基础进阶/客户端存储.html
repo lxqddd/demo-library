@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>客户端存储</title>
+</head>
+<body>
+  <script>
+    function ajax (method, url, callback, headers, data, timeout) {
+      const xhr = new XMLHttpRequest()
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+            callback(xhr.responseText)
+          } else {
+            console.log('error', xhr.status)
+          }
+        }
+      }
+
+      xhr.open(method.toLowerCase(), url)
+      if (headers) {
+        for (const key in headers) {
+          if (Object.hasOwnProperty.call(headers, key)) {
+            const element = headers[key];
+            xhr.setRequestHeader(key, headers[key])
+          }
+        }
+      }
+      xhr.timeout = timeout
+      xhr.ontimeout = function () {
+        console.log('request time out')
+      }
+      xhr.send(data)
+    }
+
+    ajax('get', 'http://localhost:5000/dev/user?name=xy&age=18', (res) => {
+      console.log(res)
+    })
+    document.cookie = 'name=xy'
+    console.log(document.cookie)
+
+    // sessionStorage.setItem('name', '向阳')
+  </script>
+</body>
+</html>
